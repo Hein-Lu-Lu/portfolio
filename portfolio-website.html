@@ -303,6 +303,55 @@
   display: table;
   clear: both;
 }
+
+	 /*slider*/
+	  .logo-slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-track {
+            display: flex;
+            animation: slide 20s linear infinite;
+            width: max-content;
+        }
+
+        .logo-track:hover {
+            animation-play-state: paused;
+        }
+
+        .logo-item {
+            flex: 0 0 auto;
+            width: 200px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+        }
+
+        .logo-item img {
+            max-width: 150px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
         /* Rest of the existing styles remain the same */
         /* Previous styles from the first version... */
     </style>
@@ -427,6 +476,43 @@
             </div>
         </div>
     </section>
+	<div class="logo-slider-container">
+        <div class="logo-track">
+            <!-- Duplicate logos to create a seamless infinite loop -->
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Cavo">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Amazon">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Mumuso">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="121">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="DUOZOULU">
+            </div>
+            <!-- Repeat the first set of logos to create a seamless loop -->
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Fastrack">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Talabat">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Theselection">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Kidzo">
+            </div>
+            <div class="logo-item">
+                <img src="/api/placeholder/150/80" alt="Kpop.ae">
+            </div>
+        </div>
+    </div>
+
 		<!-- Skill visualization Section -->
 	<section class="py-16 bg-white">
 	<div id="skills-container" class="max-w-xl w-full mx-auto p-6 bg-white rounded-lg shadow-md">
