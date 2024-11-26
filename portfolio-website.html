@@ -50,6 +50,24 @@
                 opacity: 0;
             }
         }
+	 @keyframes skillBarLoad {
+            from {
+                width: 0;
+            }
+        }
+        .skill-bar-animation {
+            animation: skillBarLoad 1.5s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+        }
+        .skill-bar-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .skill-bar-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+	 
         .blink {
             animation: blink 3s infinite;
         }
@@ -290,7 +308,7 @@
     </section>
 		<!-- Skill visualization Section -->
 	<section class="py-16 bg-white">
-	    <div id="skills-container" class="max-w-xl w-full mx-auto p-6 bg-white rounded-lg shadow-md">
+	<div id="skills-container" class="max-w-xl w-full mx-auto p-6 bg-white rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-6 text-center">Professional Skills</h2>
     </div>
 
@@ -308,7 +326,7 @@
         function createSkillBar(skill, percentage) {
             // Create main container
             const skillContainer = document.createElement('div');
-            skillContainer.className = 'mb-4';
+            skillContainer.className = 'mb-4 skill-bar-container';
 
             // Create label row
             const labelRow = document.createElement('div');
@@ -330,7 +348,7 @@
 
             // Actual progress bar
             const progressBar = document.createElement('div');
-            progressBar.className = 'bg-blue-600 h-2.5 rounded-full';
+            progressBar.className = `bg-blue-600 h-2.5 rounded-full skill-bar-animation`;
             progressBar.style.width = `${percentage}%`;
 
             // Assemble elements
@@ -343,19 +361,25 @@
             return skillContainer;
         }
 
-        // Render skills
+        // Render skills with staggered animation
         function renderSkills() {
             const container = document.getElementById('skills-container');
-            skills.forEach(skill => {
+            skills.forEach((skill, index) => {
                 const skillBar = createSkillBar(skill.name, skill.percentage);
-                container.appendChild(skillBar);
+                
+                // Staggered fade-in and slide-up effect
+                setTimeout(() => {
+                    container.appendChild(skillBar);
+                    // Force reflow to trigger CSS transition
+                    void skillBar.offsetWidth;
+                    skillBar.classList.add('show');
+                }, index * 200); // 200ms delay between each skill bar
             });
         }
 
         // Call render when page loads
         document.addEventListener('DOMContentLoaded', renderSkills);
     </script>
-	</div>
 	</section>
 	
     <!-- Education Section -->
