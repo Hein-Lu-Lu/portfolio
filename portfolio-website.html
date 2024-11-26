@@ -460,6 +460,51 @@
                 right: 20px;
             }
         }
+	 /* Filter Buttons */
+.filter-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  background-color: #0056b3;
+}
+
+/* Portfolio Items */
+.portfolio-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.item {
+  width: calc(33.333% - 10px); /* Adjust the width based on the layout */
+  text-align: center;
+  display: none; /* Initially hidden */
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.item h3 {
+  margin-top: 10px;
+  font-size: 18px;
+}
     </style>
 </head>
 <body class="bg-gray-50">
@@ -749,6 +794,33 @@
 	</div>
 </section>
 
+	<!-- Project section-->
+	<section class="py-16 bg-gray-50">
+		<div class="filter-buttons">
+  <button data-filter="all" class="active">All</button>
+  <button data-filter="web">Web Development</button>
+  <button data-filter="design">Design</button>
+  <button data-filter="other">Other</button>
+</div>
+
+<div class="portfolio-items">
+  <div class="item" data-category="web">
+    <img src="web-project1.jpg" alt="Web Project 1">
+    <h3>Web Project 1</h3>
+  </div>
+  <div class="item" data-category="design">
+    <img src="design-project1.jpg" alt="Design Project 1">
+    <h3>Design Project 1</h3>
+  </div>
+  <div class="item" data-category="other">
+    <img src="other-project1.jpg" alt="Other Project 1">
+    <h3>Other Project 1</h3>
+  </div>
+  <!-- Add more items as needed -->
+</div>
+	</section>
+		
+
     <!-- Contact Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -946,6 +1018,35 @@ Message: ${message}`;
                 }
             });
         });
+	    // Select buttons and portfolio items
+const buttons = document.querySelectorAll(".filter-buttons button");
+const items = document.querySelectorAll(".portfolio-items .item");
+
+// Add click event to each button
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    // Remove 'active' class from all buttons
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    // Add 'active' class to the clicked button
+    button.classList.add("active");
+
+    // Get the filter value
+    const filter = button.getAttribute("data-filter");
+
+    // Show or hide items based on the filter
+    items.forEach(item => {
+      if (filter === "all" || item.getAttribute("data-category") === filter) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+});
+
+// Show all items by default
+document.querySelector('button[data-filter="all"]').click();
     </script>
 
     <!-- Footer -->
