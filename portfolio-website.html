@@ -288,7 +288,73 @@
             </div>
         </div>
     </section>
+		<!-- Skill visualization Section -->
+	    <div id="skills-container" class="max-w-xl w-full mx-auto p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Professional Skills</h2>
+    </div>
 
+    <script>
+        // Skills data
+        const skills = [
+            { name: 'Digital Marketing', percentage: 90 },
+            { name: 'SEO/SEM', percentage: 85 },
+            { name: 'E-Commerce', percentage: 80 },
+            { name: 'Web Development', percentage: 70 },
+            { name: 'Social Media Strategy', percentage: 85 }
+        ];
+
+        // Function to create skill bar
+        function createSkillBar(skill, percentage) {
+            // Create main container
+            const skillContainer = document.createElement('div');
+            skillContainer.className = 'mb-4';
+
+            // Create label row
+            const labelRow = document.createElement('div');
+            labelRow.className = 'flex justify-between mb-1';
+
+            // Skill name
+            const skillNameSpan = document.createElement('span');
+            skillNameSpan.className = 'text-base font-medium text-blue-700';
+            skillNameSpan.textContent = skill;
+
+            // Percentage
+            const percentageSpan = document.createElement('span');
+            percentageSpan.className = 'text-sm font-medium text-blue-700';
+            percentageSpan.textContent = `${percentage}%`;
+
+            // Progress bar container
+            const progressContainer = document.createElement('div');
+            progressContainer.className = 'w-full bg-gray-200 rounded-full h-2.5';
+
+            // Actual progress bar
+            const progressBar = document.createElement('div');
+            progressBar.className = 'bg-blue-600 h-2.5 rounded-full';
+            progressBar.style.width = `${percentage}%`;
+
+            // Assemble elements
+            labelRow.appendChild(skillNameSpan);
+            labelRow.appendChild(percentageSpan);
+            progressContainer.appendChild(progressBar);
+            skillContainer.appendChild(labelRow);
+            skillContainer.appendChild(progressContainer);
+
+            return skillContainer;
+        }
+
+        // Render skills
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            skills.forEach(skill => {
+                const skillBar = createSkillBar(skill.name, skill.percentage);
+                container.appendChild(skillBar);
+            });
+        }
+
+        // Call render when page loads
+        document.addEventListener('DOMContentLoaded', renderSkills);
+    </script>
+	
     <!-- Education Section -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
