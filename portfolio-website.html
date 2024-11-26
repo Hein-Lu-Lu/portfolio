@@ -606,7 +606,6 @@
         });
     </script>
 	<!-- Flip Card Portfolio-->
-	    <section class="py-16 bg-gray-60">
 <body-flipcard>
 <div class="card-container">
         <div class="flip-card">
@@ -637,69 +636,6 @@
             </div>
         </div>
     </div>
-	<script>
-        // Initialize particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#ffffff' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5 },
-                size: { value: 3 },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    outMode: 'out'
-                }
-            },
-            interactivity: {
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' }
-                }
-            }
-        });
-
-        // Initialize GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate elements on scroll
-        gsap.utils.toArray('.spotlight').forEach(element => {
-            gsap.from(element, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top bottom-=100',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-        });
-
-        // Initialize Typed.js
-        new Typed('#typed-text', {
-            strings: ['IT Engineer', 'Digital Marketing Specialist', 'E-Commerce Expert'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true
-        });
-
-        // Mouse movement effect for spotlight
-        document.querySelectorAll('.spotlight').forEach(element => {
-            element.addEventListener('mousemove', e => {
-                const { left, top, width, height } = element.getBoundingClientRect();
-                const x = (e.clientX - left) / width;
-                const y = (e.clientY - top) / height;
-                
-                element.style.setProperty('--x', `${x * 100}%`);
-                element.style.setProperty('--y', `${y * 100}%`);
-            });
-        });
-    </script>
 </section>
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
