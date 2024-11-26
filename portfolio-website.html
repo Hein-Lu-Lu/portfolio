@@ -505,6 +505,54 @@
   margin-top: 10px;
   font-size: 18px;
 }
+
+/* Image Container */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Image */
+.image-container img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Icon */
+.overlay i {
+  color: white;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effects */
+.image-container:hover img {
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.image-container:hover .overlay i {
+  transform: scale(1.2); /* Slight icon zoom */
+}	 
     </style>
 </head>
 <body class="bg-gray-50">
@@ -806,19 +854,44 @@
 
 <div class="portfolio-items">
   <div class="item" data-category="web">
+	    <div class="image-container">
     <img src="WebProject/cavo.ae website.png" alt="Cavo.ae">
+		    <div class="overlay">
+			      <i class="fas fa-eye"></i><a href="www.cavo.ae" alt="cavo website">
+			      </a>
+			    </div>
+	    </div>
     <h3>Cavo.ae</h3>
   </div>
+	    
 	<div class="item" data-category="web">
+		<div class="image-container">
     <img src="WebProject/cavogroup.ae.png" alt="Cavogroup.ae">
+			 <div class="overlay">
+			      <i class="fas fa-eye"></i><a href="www.cavo.ae" alt="cavo website">
+			      </a>
+				 </div>
+	    </div>
     <h3>Cavogroup.ae</h3>
   </div>
 	<div class="item" data-category="web">
+		<div class="image-container">
     <img src="WebProject/kpop.ae website.png" alt="Kpop.ae">
+			 <div class="overlay">
+			      <i class="fas fa-eye"></i><a href="www.cavo.ae" alt="cavo website">
+			      </a>
+				 </div>
+	    </div>
     <h3>Kpop.ae</h3>
   </div>
 	<div class="item" data-category="web">
+		<div class="image-container">
     <img src="WebProject/theselection.ae website.png" alt="theselection.ae">
+			 <div class="overlay">
+			      <i class="fas fa-eye"></i><a href="www.cavo.ae" alt="cavo website">
+			      </a>
+				 </div>
+	    </div>
     <h3>Theselection.ae</h3>
   </div>
 	<div class="item" data-category="web">
