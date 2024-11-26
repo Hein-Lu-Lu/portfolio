@@ -352,8 +352,114 @@
                 transform: translateX(-100%);
             }
         }
-        /* Rest of the existing styles remain the same */
-        /* Previous styles from the first version... */
+
+	 /* WhatsApp Popup Button Styles */
+        .whatsapp-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn i {
+            font-size: 30px;
+        }
+
+        .whatsapp-popup-chat {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 15px;
+            z-index: 1001;
+            animation: slideUp 0.3s ease;
+        }
+
+        .whatsapp-popup-chat.show {
+            display: block;
+        }
+
+        .whatsapp-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin: -15px -15px 15px -15px;
+        }
+
+        .whatsapp-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .whatsapp-contact-form input,
+        .whatsapp-contact-form textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .whatsapp-send-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .whatsapp-popup-chat {
+                width: calc(100% - 40px);
+                right: 20px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -766,6 +872,83 @@
         });
     </script>
 	
+	<!-- WhatsApp Popup Button -->
+    <div class="whatsapp-popup">
+        <a href="#" class="whatsapp-btn" id="whatsappToggle">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- WhatsApp Popup Chat Window -->
+    <div class="whatsapp-popup-chat" id="whatsappPopup">
+        <div class="whatsapp-popup-header">
+            <h3>Contact Us on WhatsApp</h3>
+            <button class="whatsapp-close-btn" id="whatsappClose">&times;</button>
+        </div>
+        
+        <form class="whatsapp-contact-form" id="whatsappForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit" class="whatsapp-send-btn">Send on WhatsApp</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappToggle = document.getElementById('whatsappToggle');
+            const whatsappPopup = document.getElementById('whatsappPopup');
+            const whatsappClose = document.getElementById('whatsappClose');
+            const whatsappForm = document.getElementById('whatsappForm');
+
+            // Toggle popup visibility
+            whatsappToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                whatsappPopup.classList.toggle('show');
+            });
+
+            // Close popup
+            whatsappClose.addEventListener('click', function() {
+                whatsappPopup.classList.remove('show');
+            });
+
+            // Handle form submission
+            whatsappForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const name = this.querySelector('input[name="name"]').value;
+                const email = this.querySelector('input[name="email"]').value;
+                const message = this.querySelector('textarea[name="message"]').value;
+
+                // Create WhatsApp message
+                const phoneNumber = '+1234567890'; // Replace with your WhatsApp business number
+                const whatsappMessage = `Hello! 
+Name: ${name}
+Email: ${email}
+Message: ${message}`;
+
+                // Encode the message for URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+
+                // Reset form
+                this.reset();
+                whatsappPopup.classList.remove('show');
+            });
+
+            // Close popup if clicked outside
+            window.addEventListener('click', function(e) {
+                if (!whatsappPopup.contains(e.target) && 
+                    !whatsappToggle.contains(e.target) && 
+                    whatsappPopup.classList.contains('show')) {
+                    whatsappPopup.classList.remove('show');
+                }
+            });
+        });
+    </script>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
