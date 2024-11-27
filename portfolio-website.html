@@ -512,6 +512,7 @@
   font-size: 18px;
 }
 
+
 /* Image Container */
 .image-container {
   position: relative;
@@ -539,7 +540,30 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+/* Mobile-Friendly Grid */
+@media (max-width: 768px) {
+  .portfolio-items {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller grid items */
+    gap: 10px; /* Reduce spacing */
+  }
 
+  .image-container img {
+    width: 100%;
+    height: auto; /* Ensure images fit properly */
+  }
+
+  .overlay {
+    opacity: 1; /* Always visible on mobile (no hover state) */
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly darker for readability */
+    padding: 10px;
+    text-align: center;
+  }
+
+  .overlay a {
+    font-size: 14px; /* Smaller text */
+  }
+}
+	 
 /* Icon */
 .overlay i {
   color: white;
