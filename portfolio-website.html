@@ -567,6 +567,7 @@ background-repeat: repeat;
 -moz-background-clip: text;
 -moz-text-fill-color: transparent;
 }
+	 
     </style>
 </head>
 <body class="bg-gray-50">
@@ -828,7 +829,29 @@ background-repeat: repeat;
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <h2>My Track Record</h2>
+                    <svg viewbox="0 0 100 30">
+  <defs>
+    <linearGradient id="gradient">
+       <stop offset="0%" stop-color="#000000"/>
+    <stop offset="100%" stop-color="#FF0000"/>
+    </linearGradient>
+    <pattern id="wave" x="0" y="-0.5" width="100%" height="100%" patternUnits="userSpaceOnUse">
+      <path id="wavePath" d="M-50 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="url(#gradient)"> 
+        <animateTransform
+            attributeName="transform"
+            begin="0s"
+            dur="1.5s"
+            type="translate"
+            from="0,0"
+            to="40,0"
+            repeatCount="indefinite" />
+      </path>
+    </pattern>
+  </defs>
+  <text text-anchor="middle" x="50" y="15" font-size="17" font-family="Cabin Condensed, sans-serif" fill="white" fill-opacity="0.5">My Track Record</text>
+  <text text-anchor="middle" x="50" y="15" font-size="17" font-family="Cabin Condensed, sans-serif" fill="url(#wave)"  fill-opacity="1" style="color: #FF0000;">My Track Record</text>
+</svg>
+
                 </div>
                 <div class="flip-card-back">
                     <a href="[Original size] lucas track record .pdf" download class="download-link">
