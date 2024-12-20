@@ -897,7 +897,7 @@ window.addEventListener('scroll', () => {
     sections.forEach(section => {
       const rect = section.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom >= 0) {
-        section.classList.add('animate');
+        section.classList.add('renderSkills');
       }
     });
   });
