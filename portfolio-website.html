@@ -891,6 +891,17 @@ svg{font-weight:bold;max-width:600px;height:100%;}
 
         // Call render when page loads
         document.addEventListener('DOMContentLoaded', renderSkills);
+
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        section.classList.add('animate');
+      }
+    });
+  });
+
     </script>
 	</section>
 	
