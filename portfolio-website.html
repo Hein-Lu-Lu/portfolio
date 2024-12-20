@@ -891,6 +891,20 @@ svg{font-weight:bold;max-width:600px;height:100%;}
 
         // Call render when page loads
         document.addEventListener('DOMContentLoaded', renderSkills);
+	
+	    document.addEventListener('DOMContentLoaded', () => {
+        const skillsSection = document.getElementById('skills-container');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    renderSkills();
+                    observer.unobserve(skillsSection); // Stop observing after animation
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the container is visible
+
+        observer.observe(skillsSection);
+    });
     </script>
 	</section>
 	
