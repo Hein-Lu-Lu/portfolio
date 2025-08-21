@@ -602,6 +602,47 @@ overflow: auto;
 }	
 
 @media screen and (max-width: 480px) {
+	.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-toggle {
+  background: #3498db;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-buttons {
+  display: none; /* hidden by default */
+  position: absolute;
+  top: 100%; /* appear below the toggle */
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.filter-buttons button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.filter-buttons button:hover {
+  background: #f2f2f2;
+}
+
   .item {
     width: 100%; /* Single column on small screens */
   }
@@ -1014,6 +1055,8 @@ svg{font-weight:bold;max-width:600px;height:100%;}
 	<!-- Project section-->
 	<section class="py-16 bg-gray-50 bg-doodle shadow-md">
 		<div class="container mx-auto px-4">
+			<div class="filter-dropdown">
+  <button class="filter-toggle">Filter ▼</button>
 		<div class="filter-buttons">
   <button data-filter="all" class="active">All</button>
   <button data-filter="web">Web Development</button>
@@ -1332,6 +1375,20 @@ buttons.forEach(button => {
 
 // Show all items by default
 document.querySelector('button[data-filter="all"]').click();
+const toggle = document.querySelector(".filter-toggle");
+const menu = document.querySelector(".filter-buttons");
+
+toggle.addEventListener("click", () => {
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+// Optional: close dropdown when clicking outside
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".filter-dropdown")) {
+    menu.style.display = "none";
+  }
+});
+		
     </script>
 
     <!-- Footer -->
